@@ -1,0 +1,43 @@
+service: template-lambda
+frameworkVersion: "3"
+
+plugins:
+  - serverless-esbuild
+
+package:
+  individually: true
+
+params:
+  dev:
+    CHUNK_SIZE: 500
+  prod:
+    CHUNK_SIZE: 1000
+  default:
+    INFRA_NAME: 'lambda-infra-${opt:stage}'
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    watch:
+      pattern: ["src"]
+    target: node18
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  logRetentionInDays: 90
+  versionFunctions: false
+  timeout: 30
+  environment:
+    stage: ${opt:stage}
+    BUCKET_NAME:
+      Fn::ImportValue: ${param:INFRA_NAME}-BucketS3
+
+
+functions:
+  example:
+    name: example-${opt:stage}
+    role:
+      Fn::ImportValue: ${param:INFRA_NAME}-ExampleTemplate
+    handler: ./src/handler.example
