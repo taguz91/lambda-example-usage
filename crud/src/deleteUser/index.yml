@@ -3,7 +3,7 @@ deleteUser:
   layers:
     - { Ref: UserLayer }
   role:
-    Fn::ImportValue: ${param:INFRA_NAME}-DeleteUserRole
+    Fn::ImportValue: ${param:INFRA_NAME}-DeleteUserRoleArn
   events:
     - httpApi:
         method: DELETE

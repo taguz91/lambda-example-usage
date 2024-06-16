@@ -3,7 +3,7 @@ createUser:
   layers:
     - { Ref: UserLayer }
   role:
-    Fn::ImportValue: ${param:INFRA_NAME}-CreateUserRole
+    Fn::ImportValue: ${param:INFRA_NAME}-CreateUserRoleArn
   events:
     - httpApi:
         method: POST

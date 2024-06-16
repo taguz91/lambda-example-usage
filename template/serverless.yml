@@ -39,5 +39,5 @@ functions:
   example:
     name: example-${opt:stage}
     role:
-      Fn::ImportValue: ${param:INFRA_NAME}-ExampleTemplate
+      Fn::ImportValue: ${param:INFRA_NAME}-ExampleTemplateArn
     handler: ./src/handler.example

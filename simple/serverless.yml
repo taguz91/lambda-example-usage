@@ -35,5 +35,5 @@ functions:
   example:
     name: simple-${opt:stage}
     role:
-      Fn::ImportValue: ${param:INFRA_NAME}-SimpleLambda
+      Fn::ImportValue: ${param:INFRA_NAME}-SimpleLambdaArn
     handler: ./src/handler.simple

@@ -3,7 +3,7 @@ listUser:
   layers:
     - { Ref: UserLayer }
   role:
-    Fn::ImportValue: ${param:INFRA_NAME}-ListUserRole
+    Fn::ImportValue: ${param:INFRA_NAME}-ListUserRoleArn
   events:
     - httpApi:
         method: GET

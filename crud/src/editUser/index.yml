@@ -3,7 +3,7 @@ editUser:
   layers:
     - { Ref: UserLayer }
   role:
-    Fn::ImportValue: ${param:INFRA_NAME}-EditUserRole
+    Fn::ImportValue: ${param:INFRA_NAME}-EditUserRoleArn
   events:
     - httpApi:
         method: PUT
