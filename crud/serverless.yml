@@ -23,6 +23,11 @@ custom:
       pattern: ["src"]
     target: node18
 
+layers:
+  user:
+    path: layers/user-layer/dist
+    description: User layer
+
 provider:
   name: aws
   runtime: nodejs18.x
