@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./dist/nodejs/node_modules/user-layer",
+    "removeComments": true,
+    "sourceMap": true,
+    "target": "ES2020",
+  },
+  "lib": [
+    "es2015"
+  ]
+}

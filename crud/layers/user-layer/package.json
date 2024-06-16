@@ -1,0 +1,23 @@
+{
+  "name": "user-layer",
+  "version": "1.0.0",
+  "description": "user layer",
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "cp package.json dist/nodejs/node_modules/user-layer/package.json && cd dist/nodejs/node_modules/user-layer && npm install --omit=dev",
+    "build-without-install": "tsc && cp package.json dist/nodejs/node_modules/user-layer/package.json && cp -r node_modules dist/nodejs/node_modules/user-layer/node_modules"
+  },
+  "keywords": [
+    "lambda",
+    "aws",
+    "crud",
+    "dynamodb"
+  ],
+  "author": "Johnny Garcia",
+  "license": "MIT",
+  "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.572.0",
+    "@aws-sdk/lib-dynamodb": "^3.598.0",
+    "typescript": "^5.4.5"
+  }
+}

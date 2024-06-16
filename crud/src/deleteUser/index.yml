@@ -1,0 +1,11 @@
+deleteUser:
+  name: list-user-${opt:stage}
+  layers:
+    - { Ref: UserLayer }
+  role:
+    Fn::ImportValue: ${param:INFRA_NAME}-DeleteUserRole
+  events:
+    - httpApi:
+        method: DELETE
+        path: /api/v1/user/{email}
+  handler: ./src/deleteUser/handler.deleteUser

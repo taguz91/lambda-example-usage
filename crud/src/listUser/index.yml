@@ -1,0 +1,11 @@
+listUser:
+  name: list-user-${opt:stage}
+  layers:
+    - { Ref: UserLayer }
+  role:
+    Fn::ImportValue: ${param:INFRA_NAME}-ListUserRole
+  events:
+    - httpApi:
+        method: GET
+        path: /api/v1/user
+  handler: ./src/listUser/handler.listUser

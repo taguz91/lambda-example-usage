@@ -1,0 +1,11 @@
+createUser:
+  name: create-user-${opt:stage}
+  layers:
+    - { Ref: UserLayer }
+  role:
+    Fn::ImportValue: ${param:INFRA_NAME}-CreateUserRole
+  events:
+    - httpApi:
+        method: POST
+        path: /api/v1/user
+  handler: ./src/createUser/handler.createUser

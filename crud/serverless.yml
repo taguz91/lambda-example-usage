@@ -1,0 +1,55 @@
+service: crud-lambda
+frameworkVersion: "3"
+
+plugins:
+  - serverless-esbuild
+
+package:
+  individually: true
+
+params:
+  dev:
+    DYNAMO_DB_ARN: '<arn-dynamo-db>'
+  prod:
+    DYNAMO_DB_ARN: '<arn-dynamo-db>'
+  default:
+    INFRA_NAME: 'lambda-infra-${opt:stage}'
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    watch:
+      pattern: ["src"]
+    target: node18
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  logRetentionInDays: 90
+  versionFunctions: false
+  timeout: 30
+  httpApi:
+    cors:
+      allowedOrigins: "*"
+      allowedHeaders:
+        - Content-Type
+      allowedMethods:
+        - OPTIONS
+        - POST
+        - GET
+        - PUT
+        - DELETE
+      maxAge: 6000 # In seconds
+  apiGateway:
+    minimumCompressionSize: 1024
+    shouldStartNameWithService: true
+  environment:
+    stage: ${opt:stage}
+    DYNAMO_DB_ARN: ${param:DYNAMO_DB_ARN}
+
+functions:
+  - ${file(./src/createUser/index.yml)}
+  - ${file(./src/editUser/index.yml)}
+  - ${file(./src/listUser/index.yml)}
+  - ${file(./src/deleteUser/index.yml)}

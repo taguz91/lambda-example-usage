@@ -1,0 +1,11 @@
+editUser:
+  name: edit-user-${opt:stage}
+  layers:
+    - { Ref: UserLayer }
+  role:
+    Fn::ImportValue: ${param:INFRA_NAME}-EditUserRole
+  events:
+    - httpApi:
+        method: PUT
+        path: /api/v1/user
+  handler: ./src/editUser/handler.editUser
