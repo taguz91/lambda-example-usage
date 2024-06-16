@@ -1,0 +1,39 @@
+service: signup-lambda
+frameworkVersion: "3"
+
+plugins:
+  - serverless-esbuild
+
+package:
+  individually: true
+
+params:
+  dev:
+    DYNAMO_DB_ARN: '<arn-dynamo-db>'
+  prod:
+    DYNAMO_DB_ARN: '<arn-dynamo-db>'
+  default:
+    INFRA_NAME: 'lambda-infra-${opt:stage}'
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    watch:
+      pattern: ["src"]
+    target: node18
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  logRetentionInDays: 90
+  versionFunctions: false
+  timeout: 30
+  environment:
+    stage: ${opt:stage}
+
+
+functions:
+  - ${file(./src/newUser/index.yml)}
+  - ${file(./src/sendEmail/index.yml)}
+  - ${file(./src/setupConfig/index.yml)}

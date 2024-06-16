@@ -1,0 +1,11 @@
+sendEmail:
+  name: send-email-${opt:stage}
+  role:
+    Fn::ImportValue: ${param:INFRA_NAME}-SendEmailRoleArn
+  events:
+    - sqs:
+        arn:
+          Fn::ImportValue: ${param:INFRA_NAME}-SendEmailSqsArn
+        batchSize: 1
+        maximumConcurrency: 50
+  handler: ./src/sendEmail/handler.sendEmail

@@ -1,0 +1,11 @@
+setupConfig:
+  name: setup-config-${opt:stage}
+  role:
+    Fn::ImportValue: ${param:INFRA_NAME}-SetupConfigRoleArn
+  events:
+    - sns:
+        arn:
+          Fn::ImportValue: ${param:INFRA_NAME}-SignupUserSnsArn
+        batchSize: 1
+        maximumConcurrency: 50
+  handler: ./src/setupConfig/handler.setupConfig

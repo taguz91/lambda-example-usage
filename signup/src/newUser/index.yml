@@ -1,0 +1,9 @@
+createUser:
+  name: new-user-${opt:stage}
+  role:
+    Fn::ImportValue: ${param:INFRA_NAME}-NewUserRoleArn
+  events:
+    - httpApi:
+        method: POST
+        path: /api/v1/signup
+  handler: ./src/newUser/handler.newUser
