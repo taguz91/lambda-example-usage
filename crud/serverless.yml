@@ -57,4 +57,4 @@ functions:
   - ${file(./src/createUser/index.yml)}
   - ${file(./src/editUser/index.yml)}
   - ${file(./src/listUser/index.yml)}
-  # - ${file(./src/deleteUser/index.yml)} # not working
+  - ${file(./src/deleteUser/index.yml)}

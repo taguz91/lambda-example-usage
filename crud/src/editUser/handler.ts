@@ -26,7 +26,7 @@ export const editUser = async (event: APIGatewayEvent) => {
     }
   }
 
-  const data = await DynamoDB.edit({
+  await DynamoDB.edit({
     name: request.name,
     email: request.email,
   });
@@ -34,7 +34,7 @@ export const editUser = async (event: APIGatewayEvent) => {
   return {
     statusCode: 200,
     body: JSON.stringify(
-      data
+      request
     ),
     headers: { "Content-Type": "application/json" }
   };
