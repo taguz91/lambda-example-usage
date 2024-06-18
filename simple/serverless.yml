@@ -28,12 +28,12 @@ provider:
   environment:
     stage: ${opt:stage}
     BUCKET_NAME:
-      Fn::ImportValue: ${param:INFRA_NAME}-SimpleBucket
+      Fn::ImportValue: ${param:INFRA_NAME}-SimpleBucketName
 
 
 functions:
   example:
     name: simple-${opt:stage}
     role:
-      Fn::ImportValue: ${param:INFRA_NAME}-SimpleLambdaArn
+      Fn::ImportValue: ${param:INFRA_NAME}-SimpleBucketRoleArn
     handler: ./src/handler.simple
