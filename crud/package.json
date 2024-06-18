@@ -4,9 +4,9 @@
   "description": "Lambda with serverless template",
   "scripts": {
     "lint": "eslint . --ext .ts --max-warnings=0",
-    "deploy:dev": "serverless deploy --stage dev",
-    "deploy:prod": "serverless deploy --stage prod",
-    "remove:prod": "serverless remove --stage prod",
+    "deploy:dev": "npm run install:user-layer && serverless deploy --stage dev",
+    "deploy:prod": "npm run install:user-layer && serverless deploy --stage prod",
+    "remove:prod": "npm run install:user-layer && serverless remove --stage prod",
     "install:user-layer": "cd ./layers/user-layer/ && npm install && npm run build"
   },
   "keywords": [

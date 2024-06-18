@@ -27,10 +27,13 @@ export class DynamoDB {
       Key: {
         Email: user.email
       },
-      UpdateExpression: "set Email = :email, Name = :name",
+      UpdateExpression: "set Email = :email, #nm = :name",
       ExpressionAttributeValues: {
-        ":Name": user.name,
-        ":Email": user.email,
+        ":name": user.name,
+        ":email": user.email,
+      },
+      ExpressionAttributeNames: {
+        "#nm": "Name",
       },
       ReturnValues: "ALL_NEW",
     });

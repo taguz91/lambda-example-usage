@@ -4,13 +4,12 @@ export const listUser = async () => {
   const data = await DynamoDB.list();
 
   return {
-    statusCode: 201,
+    statusCode: 200,
     body: JSON.stringify(
       {
         data
-      },
-      null,
-      2
+      }
     ),
+    headers: { "Content-Type": "application/json" }
   };
 }

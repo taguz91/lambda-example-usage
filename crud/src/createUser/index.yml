@@ -1,7 +1,7 @@
 createUser:
   name: create-user-${opt:stage}
   layers:
-    - { Ref: UserLayer }
+    - { Ref: UserLambdaLayer }
   role:
     Fn::ImportValue: ${param:INFRA_NAME}-CreateUserRoleArn
   events:

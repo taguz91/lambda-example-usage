@@ -1,7 +1,7 @@
 editUser:
   name: edit-user-${opt:stage}
   layers:
-    - { Ref: UserLayer }
+    - { Ref: UserLambdaLayer }
   role:
     Fn::ImportValue: ${param:INFRA_NAME}-EditUserRoleArn
   events:

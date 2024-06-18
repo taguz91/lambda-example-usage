@@ -26,7 +26,7 @@ export const createUser = async (event: APIGatewayEvent) => {
     }
   }
 
-  const data = await DynamoDB.add({
+  await DynamoDB.add({
     name: request.name,
     email: request.email,
   });
@@ -34,7 +34,8 @@ export const createUser = async (event: APIGatewayEvent) => {
   return {
     statusCode: 201,
     body: JSON.stringify(
-      data
+      request
     ),
+    headers: { "Content-Type": "application/json" }
   };
 }

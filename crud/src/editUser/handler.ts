@@ -36,5 +36,6 @@ export const editUser = async (event: APIGatewayEvent) => {
     body: JSON.stringify(
       data
     ),
+    headers: { "Content-Type": "application/json" }
   };
 }
