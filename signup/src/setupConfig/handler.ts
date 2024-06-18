@@ -9,7 +9,7 @@ interface ISignup {
   email: string
 }
 
-export const newUser = async (event: SNSEvent) => {
+export const setupConfig = async (event: SNSEvent) => {
   const messages: ISignup[] = event.Records.map((record) => {
     return JSON.parse(record.Sns.Message)
   });
@@ -30,9 +30,12 @@ export const newUser = async (event: SNSEvent) => {
         Key: {
           Email: message.email
         },
-        UpdateExpression: "set Name = :name",
+        UpdateExpression: "set #nm = :name1",
         ExpressionAttributeValues: {
-          ":Name": message.email.split('@')[0],
+          ":name1": message.email.split('@')[0],
+        },
+        ExpressionAttributeNames: {
+          "#nm": "Name",
         },
         ReturnValues: "ALL_NEW",
       });

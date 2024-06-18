@@ -5,7 +5,6 @@ setupConfig:
   events:
     - sns:
         arn:
-          Fn::ImportValue: ${param:INFRA_NAME}-SignupUserSnsArn
-        batchSize: 1
-        maximumConcurrency: 50
+          Fn::ImportValue: ${param:INFRA_NAME}-SingupTopicArn
+        topicName: signup-user
   handler: ./src/setupConfig/handler.setupConfig

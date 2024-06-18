@@ -9,9 +9,9 @@ package:
 
 params:
   dev:
-    DYNAMO_DB_ARN: '<arn-dynamo-db>'
+    DYNAMO_DB_ARN: 'arn:aws:dynamodb:us-east-1:339713053923:table/usuarios'
   prod:
-    DYNAMO_DB_ARN: '<arn-dynamo-db>'
+    DYNAMO_DB_ARN: 'arn:aws:dynamodb:us-east-1:339713053923:table/usuarios'
   default:
     INFRA_NAME: 'lambda-infra-${opt:stage}'
 
@@ -29,8 +29,22 @@ provider:
   logRetentionInDays: 90
   versionFunctions: false
   timeout: 30
+  httpApi:
+    cors:
+      allowedOrigins: "*"
+      allowedHeaders:
+        - Content-Type
+      allowedMethods:
+        - OPTIONS
+        - POST
+      maxAge: 6000 # In seconds
+  apiGateway:
+    minimumCompressionSize: 1024
+    shouldStartNameWithService: true
   environment:
     stage: ${opt:stage}
+    DYNAMO_DB_ARN: ${param:DYNAMO_DB_ARN}
+    NEW_SIGNUP_SNS_ARN: arn:aws:sns:us-east-1:339713053923:signup-user
 
 
 functions:
