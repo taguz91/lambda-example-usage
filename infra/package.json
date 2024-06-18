@@ -1,5 +1,5 @@
 {
-  "name": "infra",
+  "name": "infra-lambda-examples",
   "scripts": {
     "build": "npx projen build",
     "bundle": "npx projen bundle",
@@ -42,7 +42,8 @@
   },
   "dependencies": {
     "aws-cdk-lib": "^2.1.0",
-    "constructs": "^10.0.5"
+    "constructs": "^10.0.5",
+    "dotenv": "^16.4.5"
   },
   "license": "Apache-2.0",
   "publishConfig": {
