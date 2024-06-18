@@ -22,8 +22,11 @@ export default class SimpleBucketS3Role extends Construct {
               {
                 Sid: 'AllowListObjects',
                 Effect: 'Allow',
-                Action: ['s3:ListObjectsV2'],
-                Resource: `${props.bucketS3Arn}/*`,
+                Action: ['s3:ListBucket', 's3:List*'],
+                Resource: [
+                  `${props.bucketS3Arn}/*`,
+                  props.bucketS3Arn,
+                ],
               },
             ],
           }),
